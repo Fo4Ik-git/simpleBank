@@ -2,12 +2,13 @@ package com.jaga;
 
 import com.jaga.DB.DBHelper;
 import com.jaga.User.Menu;
+import com.jaga.User.User;
 
 import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
-        try{
+        /*try{
             DBHelper dbHelper = new DBHelper();
             dbHelper.openDB();
             dbHelper.createDB();
@@ -24,7 +25,7 @@ public class Main {
             dbHelper.closeDB();
         } catch (SQLException e) {
             System.out.println("User already exists");
-        }
+        }*/
 
         /*Menu menu = new Menu();
         menu.helloMessage();*/

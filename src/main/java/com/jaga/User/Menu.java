@@ -35,7 +35,7 @@ public class Menu {
 
                     String name = s.nextLine();
                     if(check(s.nextLine())){
-                        user.createUser(name, "12345");
+                        user.createUser(name, user.createUserBankNumber());
                     }
 
                     break;

@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d410105c-c344-4dc9-b295-22a92e057bd2" name="Changes" comment="Create menu and 1/2 create user">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jaga/TODO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jaga/TODO.java" afterDir="false" />
+    <list default="true" id="d410105c-c344-4dc9-b295-22a92e057bd2" name="Changes" comment="update todo">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jaga/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jaga/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jaga/User/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jaga/User/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jaga/User/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jaga/User/User.java" afterDir="false" />
     </list>
     <list id="dfb457bf-27d8-43f5-a4bc-54482027f02b" name="Changes by bogdna2606" comment="" />
@@ -57,6 +60,7 @@
     "TODO_SCOPE": "All Places",
     "WebServerToolWindowFactoryState": "false",
     "codeWithMe.voiceChat.enabledByDefault": "false",
+    "last_opened_file_path": "C:/Users/terra/IdeaProjects/Test",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   },
@@ -110,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660606818065</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update todo">
+      <created>1660607026132</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1660607026132</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,6 +141,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add test User" />
     <MESSAGE value="Create menu and 1/2 create user" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create menu and 1/2 create user" />
+    <MESSAGE value="update todo" />
+    <option name="LAST_COMMIT_MESSAGE" value="update todo" />
   </component>
 </project>
