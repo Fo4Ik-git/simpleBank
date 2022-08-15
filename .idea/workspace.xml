@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d410105c-c344-4dc9-b295-22a92e057bd2" name="Changes" comment="" />
-    <list id="dfb457bf-27d8-43f5-a4bc-54482027f02b" name="Changes by bogdna2606" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jaga/DB/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jaga/DB/DBHelper.java" afterDir="false" />
+    <list default="true" id="d410105c-c344-4dc9-b295-22a92e057bd2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
+    <list id="dfb457bf-27d8-43f5-a4bc-54482027f02b" name="Changes by bogdna2606" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,7 +61,10 @@
     "WebServerToolWindowFactoryState": "false",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -94,6 +101,8 @@
       <option name="presentableId" value="Default" />
       <updated>1660594348159</updated>
       <workItem from="1660594352109" duration="4582000" />
+      <workItem from="1660604630652" duration="196000" />
+      <workItem from="1660604877373" duration="282000" />
     </task>
     <servers />
   </component>
@@ -110,5 +119,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
