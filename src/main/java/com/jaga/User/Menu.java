@@ -1,12 +1,14 @@
 package com.jaga.User;
 
+import java.util.Scanner;
+
 public class Menu {
-    public static void helloMessage() {
+    public void helloMessage() {
         System.out.println("Hello, welcome to the bank BVB");
         menu();
     }
 
-    public static void menu(){
+    public void menu(){
         System.out.println("1. Create a new bank account for a user");
         System.out.println("2. Deposit money to a bank account");
         System.out.println("3. Withdraw money from a bank account");
@@ -17,5 +19,35 @@ public class Menu {
         System.out.println("8. Get user");
         System.out.println("9. Get all users");
         System.out.println("10. Exit");
+
+
+    }
+
+    private void getUserChoice(){
+        Scanner s  = new Scanner(System.in);
+        User user = new User();
+        System.out.println("Enter your choice: ");
+
+        try {
+            switch (s.nextInt()){
+                case 1:
+                    System.out.println("Enter your Name: ");
+
+                    String name = s.nextLine();
+                    if(check(s.nextLine())){
+                        user.createUser(name, "12345");
+                    }
+
+                    break;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private boolean check(String value){
+        Scanner s = new Scanner(System.in);
+        System.out.println("Are you sure what " + value + " is your name? (y/n)");
+        return s.nextLine().equals("y");
     }
 }
