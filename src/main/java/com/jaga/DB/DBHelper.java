@@ -27,7 +27,7 @@ public class DBHelper {
                 "    id       INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                 "    user_id    INTEGER NOT NULL" +
                 ")";
-       //String CREATE_
+       String CREATE_
         statement = connection.createStatement();
         statement.execute(CREATE_USER);
     }
