@@ -23,11 +23,11 @@ public class DBHelper {
                 "    user_name    VARCHAR (50) NOT NULL,\n" +
                 "    bank_account VARCHAR (50) NOT NULL" +
                 ")";
-       String CREATE_BANK_NUMBER = "CREATE TABLE bank_account (\n" +
+       String CREATE_BANK_ACCOUNT = "CREATE TABLE bank_account (\n" +
                 "    id       INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                 "    user_id    INTEGER NOT NULL" +
                 ")";
-       String CREATE_
+//
         statement = connection.createStatement();
         statement.execute(CREATE_USER);
     }
