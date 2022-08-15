@@ -5,7 +5,7 @@ import com.jaga.DB.DBHelper;
 import java.sql.SQLException;
 
 public class User {
-    public void createUser(String user_name, String bank_account)  {
+    public void createUser(String user_name, String bank_account) {
         DBHelper dbHelper = new DBHelper();
         try {
             dbHelper.openDB();
@@ -16,6 +16,10 @@ public class User {
         }
     }
 
+    private void createUserBankNumber() {
+        DBHelper dbHelper = new DBHelper();
 
+
+    }
 
 }
