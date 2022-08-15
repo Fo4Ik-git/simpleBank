@@ -48,7 +48,7 @@ public class DBHelper {
     public void closeDB() {
         try {
             connection.close();
-            System.out.println("Database closed");
+            //System.out.println("Database closed");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
