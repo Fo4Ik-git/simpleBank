@@ -8,13 +8,14 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
-        /*try{
+        try{
             DBHelper dbHelper = new DBHelper();
             dbHelper.openDB();
             dbHelper.createDB();
             dbHelper.closeDB();
         } catch (SQLException e) {
             System.out.println("Table already exists");
+            /*System.out.println(e.getMessage());*/
         }
 
         //Add test User
@@ -25,10 +26,10 @@ public class Main {
             dbHelper.closeDB();
         } catch (SQLException e) {
             System.out.println("User already exists");
-        }*/
+        }
 
-        /*Menu menu = new Menu();
-        menu.helloMessage();*/
+        Menu menu = new Menu();
+        menu.helloMessage();
     }
 
 

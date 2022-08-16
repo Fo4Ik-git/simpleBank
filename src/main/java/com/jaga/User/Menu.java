@@ -26,7 +26,7 @@ public class Menu {
         System.out.println("9. Get all users");
         System.out.println("10. Exit");
 
-
+        getUserChoice();
     }
 
 
@@ -51,8 +51,10 @@ public class Menu {
     void enterName() {
         System.out.println("Enter your Name: ");
         String name = s.nextLine();
-        if (check(s.nextLine())) {
+        if (check(name)) {
             user.createUser(name, user.createUserBankNumber());
+        } else {
+            enterName();
         }
     }
 
@@ -71,6 +73,10 @@ public class Menu {
     //Check is Username
     private boolean check(String value) {
         System.out.println("Are you sure what " + value + " is your name? (y/n)");
-        return s.nextLine().equals("y");
+        if (s.nextLine().equals("y")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

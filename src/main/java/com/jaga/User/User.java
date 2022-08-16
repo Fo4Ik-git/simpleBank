@@ -6,11 +6,11 @@ import java.sql.SQLException;
 import java.util.Random;
 
 public class User {
-    public void createUser(String user_name, String bank_account) {
+    public void createUser(String userName, String bankAccount) {
         DBHelper dbHelper = new DBHelper();
         try {
             dbHelper.openDB();
-            dbHelper.createUser(user_name, bank_account);
+            dbHelper.createUser(userName, bankAccount);
             dbHelper.closeDB();
         } catch (SQLException e) {
             System.out.println("User already exists");
@@ -20,17 +20,17 @@ public class User {
     String createUserBankNumber() {
         DBHelper dbHelper = new DBHelper();
 
-        /*try {
+        try {
             dbHelper.openDB();
             String number = generatorOfNumbers();
-            if (dbHelper.newMethod(number)) {
+            if (dbHelper.checkIfExists(number)) {
                 return number;
             } else {
                 createUserBankNumber();
             }
             dbHelper.closeDB();
         } catch (SQLException e) {
-        }*/
+        }
         return "";
     }
 
@@ -43,7 +43,7 @@ public class User {
         for (int i = 0; i < len; i++) {
             sb.append(chars.charAt(rnd.nextInt(chars.length())));
         }
-        System.out.println(sb.toString());
+        System.out.println("Generator " + sb.toString());
 
         return sb.toString();
     }
