@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.Random;
 
 public class User {
+    Config config = new Config();
+
     public void createUser(String userName, String bankAccount) {
         DBHelper dbHelper = new DBHelper();
         try {
@@ -22,9 +24,9 @@ public class User {
 
         try {
             dbHelper.openDB();
-            String number = generatorOfNumbers();
-            if (dbHelper.checkIfExists(number)) {
-                return number;
+            config.setUserBankNumber(generatorOfNumbers());
+            if (dbHelper.checkIfExists(config.getUserBankNumber())) {
+                return config.getUserBankNumber();
             } else {
                 createUserBankNumber();
             }

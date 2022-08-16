@@ -19,14 +19,6 @@ public class Main {
         }
 
         //Add test User
-        try {
-            DBHelper dbHelper = new DBHelper();
-            dbHelper.openDB();
-            dbHelper.createUser("Vlad", "12345");
-            dbHelper.closeDB();
-        } catch (SQLException e) {
-            System.out.println("User already exists");
-        }
 
         Menu menu = new Menu();
         menu.helloMessage();

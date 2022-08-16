@@ -7,8 +7,19 @@ import java.sql.*;
 public class DBHelper {
     // JDBC driver name and database URL
 
-    private String userName, bankNumber, currency, userID, bankAccountID;
+    static final String JDBC_NAME = "db.db";
+    public Statement statement;
+    Connection connection;
+    private String userName, userPassword, bankNumber, currency, userID, bankAccountID;
     private float funds;
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
 
     public String getUserName() {
         return userName;
@@ -58,10 +69,6 @@ public class DBHelper {
         this.funds = funds;
     }
 
-    static final String JDBC_NAME = "db.db";
-    public Statement statement;
-    Connection connection;
-
     //Create Data Base
     public void createDB() throws SQLException {
         File file = new File(JDBC_NAME);
@@ -69,6 +76,7 @@ public class DBHelper {
         String CREATE_USER = "CREATE TABLE user (\n" +
                 "    id       INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                 "    userName    VARCHAR (50) NOT NULL,\n" +
+                "    userPassword    VARCHAR (50) NOT NULL,\n" +
                 "    bankNumber VARCHAR (50) NOT NULL UNIQUE" +
                 ")";
         final String CREATE_BANK_ACCOUNT = "CREATE TABLE bankAccount (\n" +
@@ -107,10 +115,10 @@ public class DBHelper {
     }
 
     //Create User
-    public void createUser(String userName, String bankNumber) throws SQLException {
-        String CREATE = "INSERT INTO user (userName, bankNumber) " +
+    public void createUser(String userName, String userPassword, String bankNumber) throws SQLException {
+        String CREATE = "INSERT INTO user (userName,userPassword, bankNumber) " +
                 "VALUES (" +
-                "'" + userName + "', '" + bankNumber + "'" +
+                "'" + userName + "', '" + userPassword + "'" + ",'" + bankNumber +
                 ")";
         statement = connection.createStatement();
         statement.execute(CREATE);
@@ -123,6 +131,7 @@ public class DBHelper {
         statement.execute(DELETE);
     }
 
+    //Rebuild
     public void userUpdate(String newId, String newUsername, String newBankNumber) throws SQLException {
         String UPDATE = "UPDATE user SET  userName ='" + newUsername + "'" + ", bankNumber = '" + newBankNumber + "'";
         statement = connection.createStatement();
@@ -131,27 +140,29 @@ public class DBHelper {
 
 
     public boolean checkIfExists(String bankNumber) throws SQLException {
-        String CHECK = "SELECT * FROM user WHERE" + "'" + bankNumber + "'" +  "LIKE" + "'bankNumber';";
+        String CHECK = "SELECT * FROM user WHERE" + "'" + bankNumber + "'" + "LIKE" + "'bankNumber';";
         statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(CHECK);
         if (rs.next()) {
             return false;
         } else return true;
     }
-//1234567890
+
+    //1234567890
     public void getAllUserData(String bankNumber) throws SQLException {
         try {
             String GET_ALL_DATA =
                     "SELECT * \n" +
-                    "FROM user u \n" +
-                    "JOIN bankAccount ba \n" +
-                        "on u.bankNumber = ba.bankNumber \n";
+                            "FROM user u \n" +
+                            "LEFT JOIN bankAccount ba \n" +
+                            "on u.bankNumber = ba.bankNumber \n";
 
             ResultSet rs = statement.executeQuery(GET_ALL_DATA);
             while (rs.next()) {
                 setUserID(rs.getString("u.id"));
                 setBankNumber(rs.getString("u.bankNumber"));
                 setUserName(rs.getString("u.name"));
+                setUserPassword(rs.getString("u.password"));
                 setBankAccountID(rs.getString("ba.id"));
                 setCurrency(rs.getString("ba.currency"));
                 setFunds(Float.parseFloat(rs.getString("ba.funds")));
@@ -163,6 +174,15 @@ public class DBHelper {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void createBankAccount(String bankNumber, String currency, float funds) throws SQLException {
+        String CREATE = "INSERT INTO bankAccount (bankNumber, currency, funds) " +
+                "VALUES (" +
+                "'" + bankNumber + "', '" + currency + "', '" + funds + "'" +
+                ")";
+        statement = connection.createStatement();
+        statement.execute(CREATE);
     }
 
 }

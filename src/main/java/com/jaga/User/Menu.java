@@ -2,12 +2,14 @@ package com.jaga.User;
 
 import com.jaga.DB.DBHelper;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Menu {
     Scanner s = new Scanner(System.in);
     DBHelper dbHelper = new DBHelper();
     User user = new User();
+    Config config = new Config();
 
     public void helloMessage() {
         System.out.println("Hello, welcome to the bank BVB");
@@ -55,10 +57,21 @@ public class Menu {
 
     void printBalance() {
     //    System.out.println("You have " + dbHelper.getBalance() + " in your account");
+
+        try {
+            dbHelper.openDB();
+            dbHelper.getAllUserData(config.getUserBankNumber());
+            System.out.println("You have " + dbHelper.getFunds() + " in your account");
+            dbHelper.closeDB();
+            menu();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     void updateUser() {
 
+        menu();
     }
 
 
@@ -67,6 +80,7 @@ public class Menu {
         String name = s.nextLine();
         if (check(name)) {
             user.createUser(name, user.createUserBankNumber());
+            menu();
         } else {
             enterName();
         }
@@ -78,10 +92,12 @@ public class Menu {
 
         dbHelper.closeDB();
         s.nextInt();
+        menu();
     }
 
     void withdrawMoney() throws Exception {
 
+        menu();
     }
 
     //Check is Username
