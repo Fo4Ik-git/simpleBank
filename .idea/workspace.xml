@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d410105c-c344-4dc9-b295-22a92e057bd2" name="Changes" comment="fix bugs in DBHelper">
+    <list default="true" id="d410105c-c344-4dc9-b295-22a92e057bd2" name="Changes" comment="gg">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jaga/DB/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jaga/DB/DBHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jaga/User/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jaga/User/Menu.java" afterDir="false" />
     </list>
     <list id="dfb457bf-27d8-43f5-a4bc-54482027f02b" name="Changes by bogdna2606" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -119,7 +120,21 @@
       <option name="project" value="LOCAL" />
       <updated>1660611418278</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fix bugs in DBHelper recommit">
+      <created>1660611531302</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1660611531302</updated>
+    </task>
+    <task id="LOCAL-00005" summary="gg">
+      <created>1660611679186</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1660611679186</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,7 +155,9 @@
     <MESSAGE value="Add test User" />
     <MESSAGE value="Create menu and 1/2 create user" />
     <MESSAGE value="fix bugs in DBHelper" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bugs in DBHelper" />
+    <MESSAGE value="fix bugs in DBHelper recommit" />
+    <MESSAGE value="gg" />
+    <option name="LAST_COMMIT_MESSAGE" value="gg" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

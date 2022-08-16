@@ -40,12 +40,15 @@ public class Menu {
                 case 1 -> enterName();
                 case 2 -> depositMoney();
                 case 3 -> withdrawMoney();
+                case 6 -> updateUser();
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
+    void updateUser() {
+    }
 
 
     void enterName() {

@@ -70,7 +70,7 @@ public class DBHelper {
     }
 
     public void userUpdate(String newId, String newUsername, String newBankAccount) throws SQLException {
-        String UPDATE = "UPDATE user SET id = '" + newId + "'" + ", user_name ='" + newUsername + "'" + ", bank_account = '" + newBankAccount + "'";
+        String UPDATE = "UPDATE user SET  userName ='" + newUsername + "'" + ", bankAccount = '" + newBankAccount + "'";
         statement = connection.createStatement();
         statement.execute(UPDATE);
     }
