@@ -32,6 +32,7 @@ public class User {
             }
             dbHelper.closeDB();
         } catch (SQLException e) {
+
         }
         return "";
     }

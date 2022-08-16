@@ -12,21 +12,42 @@ public class Menu {
     Config config = new Config();
 
     public void helloMessage() {
-        System.out.println("Hello, welcome to the bank BVB");
-        menu();
+        System.out.println("Hello, welcome to the bank BVB " +
+                "Do you have an account? (y/n)");
+        if (s.nextLine().equals("y")){
+           checkUserData();
+        } else {
+            System.out.println("Do you want to create an account? (y/n)");
+            if (s.nextLine().equals("y")){
+                createUser();
+            } else {
+                System.out.println("Goodbye");
+            }
+        }
+    }
+
+    private void checkUserData() {
+        System.out.println("Please enter your username");
+        String userName = s.nextLine();
+        System.out.println("Please enter your password");
+        String userPassword = s.nextLine();
+        if (userName.equals(config.getUserName()) && userPassword.equals(config.getUserPassword())) {
+            menu();
+        } else {
+            System.out.println("Wrong username or password");
+        }
     }
 
     public void menu() {
-        System.out.println("1. Create a new bank account for a user");
+        System.out.println("1. Create a new currency account for a user");
         System.out.println("2. Deposit money to a bank account");
         System.out.println("3. Withdraw money from a bank account");
-        System.out.println("4. Create a new currency account for a user");
-        System.out.println("5. Print the balance of a bank account");
-        System.out.println("6. Update user");
-        System.out.println("7. Delete user");
-        System.out.println("8. Get user");
-        System.out.println("9. Get all users");
-        System.out.println("10. Exit");
+        System.out.println("4. Print the balance of a bank account");
+        System.out.println("5. Update user");
+        System.out.println("6. Delete user");
+        System.out.println("7. Get user");
+        System.out.println("8. Get all users");
+        System.out.println("9. Exit");
 
         getUserChoice();
     }
@@ -39,7 +60,7 @@ public class Menu {
 
         try {
             switch (s.nextInt()) {
-                case 1 -> enterName();
+                case 1 -> createUser();
                 case 2 -> depositMoney();
                 case 3 -> withdrawMoney();
                 case 4 -> createCurrencyAccount();
@@ -75,14 +96,14 @@ public class Menu {
     }
 
 
-    void enterName() {
+    void createUser() {
         System.out.println("Enter your Name: ");
         String name = s.nextLine();
         if (check(name)) {
             user.createUser(name, "test",  user.createUserBankNumber());
             menu();
         } else {
-            enterName();
+            createUser();
         }
     }
 
