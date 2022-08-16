@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d410105c-c344-4dc9-b295-22a92e057bd2" name="Changes" comment="gg">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jaga/DB/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jaga/DB/DBHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jaga/User/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jaga/User/Menu.java" afterDir="false" />
     </list>
     <list id="dfb457bf-27d8-43f5-a4bc-54482027f02b" name="Changes by bogdna2606" comment="" />
     <option name="SHOW_DIALOG" value="false" />

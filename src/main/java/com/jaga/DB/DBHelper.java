@@ -80,7 +80,7 @@ public class DBHelper {
 //        bank_account = 'new_bank_account'
 
     public boolean checkIfExists(String bankNumber) throws SQLException {
-        String CHECK = "FROM user IF(STRCMP(bankNumber, bankNumber) = 0, " + "true" + "," + "false);";
+        String CHECK = "SELECT * FROM user WHERE" + "'" + bankNumber + "'" +  "LIKE" + "'bankNumber';";
         statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(CHECK);
         while (rs.next()) {
