@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d410105c-c344-4dc9-b295-22a92e057bd2" name="Changes" comment="Update menu and DBHelper">
+    <list default="true" id="d410105c-c344-4dc9-b295-22a92e057bd2" name="Changes" comment="Update DBHelper">
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jaga/DB/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jaga/DB/DBHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jaga/User/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jaga/User/Menu.java" afterDir="false" />
     </list>
@@ -148,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660612006535</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Update DBHelper">
+      <created>1660612660408</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1660612660408</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,7 +178,8 @@
     <MESSAGE value="fix bugs in DBHelper recommit" />
     <MESSAGE value="gg" />
     <MESSAGE value="Update menu and DBHelper" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update menu and DBHelper" />
+    <MESSAGE value="Update DBHelper" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update DBHelper" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

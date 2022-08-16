@@ -18,15 +18,18 @@ public class DBHelper {
         String CREATE_USER = "CREATE TABLE user (\n" +
                 "    id       INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                 "    userName    VARCHAR (50) NOT NULL,\n" +
-                "    bankAccount VARCHAR (50) NOT NULL UNIQUE" +
+                "    bankNumber VARCHAR (50) NOT NULL UNIQUE" +
                 ")";
-        final String CREATE_BANK_ACCOUNT = "CREATE TABLE bank_account (\n" +
+        final String CREATE_BANK_ACCOUNT = "CREATE TABLE bankAccount (\n" +
                 "    id       INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
-                "    userId    INTEGER NOT NULL" +
+                "    bankNumber       VARCHAR (50)      NOT NULL,\n" +
+                "    currency       VARCHAR (50)      NOT NULL,\n" +
+                "    funds       FLOAT      NOT NULL" +
                 ")";
 //
         statement = connection.createStatement();
         statement.execute(CREATE_USER);
+        statement.execute(CREATE_BANK_ACCOUNT);
     }
 
 
@@ -53,10 +56,10 @@ public class DBHelper {
     }
 
     //Create User
-    public void createUser(String userName, String bankAccount) throws SQLException {
-        String CREATE = "INSERT INTO user (userName, bankAccount) " +
+    public void createUser(String userName, String bankNumber) throws SQLException {
+        String CREATE = "INSERT INTO user (userName, bankNumber) " +
                 "VALUES (" +
-                "'" + userName + "', '" + bankAccount + "'" +
+                "'" + userName + "', '" + bankNumber + "'" +
                 ")";
         statement = connection.createStatement();
         statement.execute(CREATE);
@@ -69,8 +72,8 @@ public class DBHelper {
         statement.execute(DELETE);
     }
 
-    public void userUpdate(String newId, String newUsername, String newBankAccount) throws SQLException {
-        String UPDATE = "UPDATE user SET  userName ='" + newUsername + "'" + ", bankAccount = '" + newBankAccount + "'";
+    public void userUpdate(String newId, String newUsername, String newBankNumber) throws SQLException {
+        String UPDATE = "UPDATE user SET  userName ='" + newUsername + "'" + ", bankNumber = '" + newBankNumber + "'";
         statement = connection.createStatement();
         statement.execute(UPDATE);
     }

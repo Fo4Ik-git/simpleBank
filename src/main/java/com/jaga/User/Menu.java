@@ -18,7 +18,7 @@ public class Menu {
         System.out.println("1. Create a new bank account for a user");
         System.out.println("2. Deposit money to a bank account");
         System.out.println("3. Withdraw money from a bank account");
-        System.out.println("4. Transfer money from one bank account to another");
+        System.out.println("4. Create a new currency account for a user");
         System.out.println("5. Print the balance of a bank account");
         System.out.println("6. Update user");
         System.out.println("7. Delete user");
@@ -40,12 +40,17 @@ public class Menu {
                 case 1 -> enterName();
                 case 2 -> depositMoney();
                 case 3 -> withdrawMoney();
+                case 4 -> createCurrencyAccount();
                 case 5 -> printBalance();
                 case 6 -> updateUser();
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    void createCurrencyAccount() {
+
     }
 
     void printBalance() {
