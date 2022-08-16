@@ -44,6 +44,7 @@ public class User {
             sb.append(chars.charAt(rnd.nextInt(chars.length())));
         }
         System.out.println("Generator " + sb.toString());
+        //testets
 
         return sb.toString();
     }
