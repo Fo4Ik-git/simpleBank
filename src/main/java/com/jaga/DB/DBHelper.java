@@ -15,8 +15,6 @@ public class DBHelper {
     Connection connection;
 
 
-
-
     //Create Data Base
     public void createDB() throws SQLException {
         File file = new File(JDBC_NAME);
@@ -129,6 +127,21 @@ public class DBHelper {
                 ")";
         statement = connection.createStatement();
         statement.execute(CREATE);
+    }
+
+    public boolean checkLoginAndPassword(String userLogin, String userPassword) throws SQLException {
+        String CHECK_LOGIN = "SELECT * FROM user WHERE\" + \"'\" + userLogin + \"'\" + \"LIKE\" + \"'userLogin';";
+        String CHECK_PASSWORD = "SELECT * FROM user WHERE\" + \"'\" + userPassword + \"'\" + \"LIKE\" + \"'userPassword';";
+        statement = connection.createStatement();
+        statement.execute(CHECK_LOGIN);
+        statement.execute(CHECK_PASSWORD);
+        ResultSet log = statement.executeQuery(CHECK_LOGIN);
+        ResultSet pas = statement.executeQuery(CHECK_PASSWORD);
+        if (log.next()) {
+            return false;
+        } else if (pas.next()) {
+            return false;
+        } else return true;
     }
 
 }
