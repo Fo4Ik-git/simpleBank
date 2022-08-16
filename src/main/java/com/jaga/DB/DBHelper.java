@@ -1,73 +1,21 @@
 package com.jaga.DB;
 
 
+import com.jaga.User.Config;
+
 import java.io.File;
 import java.sql.*;
 
 public class DBHelper {
     // JDBC driver name and database URL
+    Config config = new Config();
 
     static final String JDBC_NAME = "db.db";
     public Statement statement;
     Connection connection;
-    private String userName, userPassword, bankNumber, currency, userID, bankAccountID;
-    private float funds;
 
-    public String getUserPassword() {
-        return userPassword;
-    }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getBankNumber() {
-        return bankNumber;
-    }
-
-    public void setBankNumber(String bankNumber) {
-        this.bankNumber = bankNumber;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public String getBankAccountID() {
-        return bankAccountID;
-    }
-
-    public void setBankAccountID(String bankAccountID) {
-        this.bankAccountID = bankAccountID;
-    }
-
-    public float getFunds() {
-        return funds;
-    }
-
-    public void setFunds(float funds) {
-        this.funds = funds;
-    }
 
     //Create Data Base
     public void createDB() throws SQLException {
@@ -118,7 +66,7 @@ public class DBHelper {
     public void createUser(String userName, String userPassword, String bankNumber) throws SQLException {
         String CREATE = "INSERT INTO user (userName,userPassword, bankNumber) " +
                 "VALUES (" +
-                "'" + userName + "', '" + userPassword + "'" + ",'" + bankNumber +
+                "'" + userName + "', '" + userPassword + "'" + ", '" + bankNumber +
                 ")";
         statement = connection.createStatement();
         statement.execute(CREATE);
@@ -159,13 +107,11 @@ public class DBHelper {
 
             ResultSet rs = statement.executeQuery(GET_ALL_DATA);
             while (rs.next()) {
-                setUserID(rs.getString("u.id"));
-                setBankNumber(rs.getString("u.bankNumber"));
-                setUserName(rs.getString("u.name"));
-                setUserPassword(rs.getString("u.password"));
-                setBankAccountID(rs.getString("ba.id"));
-                setCurrency(rs.getString("ba.currency"));
-                setFunds(Float.parseFloat(rs.getString("ba.funds")));
+                config.setUserID(rs.getString("u.id"));
+                config.setUserName(rs.getString("u.name"));
+                config.setBankAccountID(rs.getString("ba.id"));
+                config.setCurrency(rs.getString("ba.currency"));
+                config.setFunds(Float.parseFloat(rs.getString("ba.funds")));
             }
 
             statement = connection.createStatement();

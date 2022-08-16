@@ -61,7 +61,7 @@ public class Menu {
         try {
             dbHelper.openDB();
             dbHelper.getAllUserData(config.getUserBankNumber());
-            System.out.println("You have " + dbHelper.getFunds() + " in your account");
+            System.out.println("You have " + config.getFunds() + " in your account");
             dbHelper.closeDB();
             menu();
         } catch (SQLException e) {
@@ -79,7 +79,7 @@ public class Menu {
         System.out.println("Enter your Name: ");
         String name = s.nextLine();
         if (check(name)) {
-            user.createUser(name, user.createUserBankNumber());
+            user.createUser(name, "test",  user.createUserBankNumber());
             menu();
         } else {
             enterName();

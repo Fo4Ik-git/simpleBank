@@ -8,11 +8,11 @@ import java.util.Random;
 public class User {
     Config config = new Config();
 
-    public void createUser(String userName, String bankAccount) {
+    public void createUser(String userName, String userPassword, String bankAccount) {
         DBHelper dbHelper = new DBHelper();
         try {
             dbHelper.openDB();
-            dbHelper.createUser(userName, bankAccount);
+            dbHelper.createUser(userName, userPassword, bankAccount);
             dbHelper.closeDB();
         } catch (SQLException e) {
             System.out.println("User already exists");
