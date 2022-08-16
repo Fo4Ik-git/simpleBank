@@ -1,0 +1,95 @@
+Index: src/main/java/com/jaga/User/Menu.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.jaga.User;\r\n\r\nimport com.jaga.DB.DBHelper;\r\n\r\nimport java.util.Scanner;\r\n\r\npublic class Menu {\r\n    Scanner s = new Scanner(System.in);\r\n    DBHelper dbHelper = new DBHelper();\r\n    User user = new User();\r\n\r\n    public void helloMessage() {\r\n        System.out.println(\"Hello, welcome to the bank BVB\");\r\n        menu();\r\n    }\r\n\r\n    public void menu() {\r\n        System.out.println(\"1. Create a new bank account for a user\");\r\n        System.out.println(\"2. Deposit money to a bank account\");\r\n        System.out.println(\"3. Withdraw money from a bank account\");\r\n        System.out.println(\"4. Transfer money from one bank account to another\");\r\n        System.out.println(\"5. Print the balance of a bank account\");\r\n        System.out.println(\"6. Update user\");\r\n        System.out.println(\"7. Delete user\");\r\n        System.out.println(\"8. Get user\");\r\n        System.out.println(\"9. Get all users\");\r\n        System.out.println(\"10. Exit\");\r\n\r\n        getUserChoice();\r\n    }\r\n\r\n\r\n    private void getUserChoice() {\r\n        Scanner s = new Scanner(System.in);\r\n\r\n        System.out.println(\"Enter your choice: \");\r\n\r\n        try {\r\n            switch (s.nextInt()) {\r\n                case 1 -> enterName();\r\n                case 2 -> depositMoney();\r\n                case 3 -> withdrawMoney();\r\n                case 6 -> updateUser();\r\n            }\r\n        } catch (Exception e) {\r\n            throw new RuntimeException(e);\r\n        }\r\n    }\r\n\r\n    void updateUser() {\r\n    }\r\n\r\n\r\n    void enterName() {\r\n        System.out.println(\"Enter your Name: \");\r\n        String name = s.nextLine();\r\n        if (check(name)) {\r\n            user.createUser(name, user.createUserBankNumber());\r\n        } else {\r\n            enterName();\r\n        }\r\n    }\r\n\r\n    void depositMoney() throws Exception {\r\n        System.out.println(\"Enter a value of deposit: \");\r\n        dbHelper.openDB();\r\n\r\n        dbHelper.closeDB();\r\n        s.nextInt();\r\n    }\r\n\r\n    void withdrawMoney() throws Exception {\r\n\r\n    }\r\n\r\n    //Check is Username\r\n    private boolean check(String value) {\r\n        System.out.println(\"Are you sure what \" + value + \" is your name? (y/n)\");\r\n        if (s.nextLine().equals(\"y\")) {\r\n            return true;\r\n        } else {\r\n            return false;\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+diff --git a/src/main/java/com/jaga/User/Menu.java b/src/main/java/com/jaga/User/Menu.java
+--- a/src/main/java/com/jaga/User/Menu.java	(revision c884cd677ffe1e7e1212c11902253bd82e598004)
++++ b/src/main/java/com/jaga/User/Menu.java	(date 1660612285285)
+@@ -40,6 +40,7 @@
+                 case 1 -> enterName();
+                 case 2 -> depositMoney();
+                 case 3 -> withdrawMoney();
++                case 5 -> printBalance();
+                 case 6 -> updateUser();
+             }
+         } catch (Exception e) {
+@@ -47,7 +48,12 @@
+         }
+     }
+ 
++    void printBalance() {
++    //    System.out.println("You have " + dbHelper.getBalance() + " in your account");
++    }
++
+     void updateUser() {
++
+     }
+ 
+ 
+Index: src/main/java/com/jaga/DB/DBHelper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.jaga.DB;\r\n\r\n\r\nimport java.io.File;\r\nimport java.sql.*;\r\n\r\npublic class DBHelper {\r\n    // JDBC driver name and database URL\r\n\r\n    static final String JDBC_NAME = \"db.db\";\r\n    public Statement statement;\r\n    Connection connection;\r\n\r\n    //Create Data Base\r\n    public void createDB() throws SQLException {\r\n        File file = new File(JDBC_NAME);\r\n\r\n        String CREATE_USER = \"CREATE TABLE user (\\n\" +\r\n                \"    id       INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL,\\n\" +\r\n                \"    userName    VARCHAR (50) NOT NULL,\\n\" +\r\n                \"    bankAccount VARCHAR (50) NOT NULL UNIQUE\" +\r\n                \")\";\r\n        final String CREATE_BANK_ACCOUNT = \"CREATE TABLE bank_account (\\n\" +\r\n                \"    id       INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL,\\n\" +\r\n                \"    user_id    INTEGER NOT NULL\" +\r\n                \")\";\r\n//\r\n        statement = connection.createStatement();\r\n        statement.execute(CREATE_USER);\r\n    }\r\n\r\n\r\n    //Connect to Data Base\r\n    public void openDB() {\r\n        try {\r\n            Class.forName(\"org.sqlite.JDBC\");\r\n            connection = DriverManager.getConnection(\r\n                    \"jdbc:sqlite:\" + JDBC_NAME);\r\n        } catch (Exception e) {\r\n            System.out.println(e.getMessage());\r\n            System.out.println(\"error here opendb\");\r\n        }\r\n    }\r\n\r\n    //Close Data Base\r\n    public void closeDB() {\r\n        try {\r\n            connection.close();\r\n            //System.out.println(\"Database closed\");\r\n        } catch (Exception e) {\r\n            System.out.println(e.getMessage());\r\n        }\r\n    }\r\n\r\n    //Create User\r\n    public void createUser(String userName, String bankAccount) throws SQLException {\r\n        String CREATE = \"INSERT INTO user (userName, bankAccount) \" +\r\n                \"VALUES (\" +\r\n                \"'\" + userName + \"', '\" + bankAccount + \"'\" +\r\n                \")\";\r\n        statement = connection.createStatement();\r\n        statement.execute(CREATE);\r\n    }\r\n\r\n\r\n    public void deleteUser(String id) throws SQLException {\r\n        String DELETE = \"DELETE FROM user WHERE id = '\" + id + \"'\";\r\n        statement = connection.createStatement();\r\n        statement.execute(DELETE);\r\n    }\r\n\r\n    public void userUpdate(String newId, String newUsername, String newBankAccount) throws SQLException {\r\n        String UPDATE = \"UPDATE user SET  userName ='\" + newUsername + \"'\" + \", bankAccount = '\" + newBankAccount + \"'\";\r\n        statement = connection.createStatement();\r\n        statement.execute(UPDATE);\r\n    }\r\n//    UPDATE users\r\n//    SET id = 'new-id',\r\n//        user_name ='new_username',\r\n//        bank_account = 'new_bank_account'\r\n\r\n    public boolean checkIfExists(String bankNumber) throws SQLException {\r\n        String CHECK = \"FROM user IF(STRCMP(bankNumber, bankNumber) = 0, \" + \"true\" + \",\" + \"false);\";\r\n        statement = connection.createStatement();\r\n        ResultSet rs = statement.executeQuery(CHECK);\r\n        while (rs.next()) {\r\n            System.out.println(\"checkIfExeist:\" + rs.first());\r\n        }\r\n        return false;\r\n    }\r\n\r\n}\r\n//    FROM users\r\n//    IF(STRCMP(bankNumber, bankNumber) = 0, \"TRUE\", \"FALSE\")
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+diff --git a/src/main/java/com/jaga/DB/DBHelper.java b/src/main/java/com/jaga/DB/DBHelper.java
+--- a/src/main/java/com/jaga/DB/DBHelper.java	(revision c884cd677ffe1e7e1212c11902253bd82e598004)
++++ b/src/main/java/com/jaga/DB/DBHelper.java	(date 1660612285297)
+@@ -22,7 +22,7 @@
+                 ")";
+         final String CREATE_BANK_ACCOUNT = "CREATE TABLE bank_account (\n" +
+                 "    id       INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
+-                "    user_id    INTEGER NOT NULL" +
++                "    userId    INTEGER NOT NULL" +
+                 ")";
+ //
+         statement = connection.createStatement();
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"d410105c-c344-4dc9-b295-22a92e057bd2\" name=\"Changes\" comment=\"gg\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/jaga/DB/DBHelper.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/jaga/DB/DBHelper.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/jaga/User/Menu.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/jaga/User/Menu.java\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"dfb457bf-27d8-43f5-a4bc-54482027f02b\" name=\"Changes by bogdna2606\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand />\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PUSH_AUTO_UPDATE\" value=\"true\" />\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2DPIZ2WnL7UFQ2z0O4xKC0o0aws\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;\r\n  },\r\n  &quot;keyToStringList&quot;: {\r\n    &quot;DatabaseDriversLRU&quot;: [\r\n      &quot;sqlite&quot;\r\n    ]\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.jaga.Main\" />\r\n      <module name=\"Bank.main\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.jaga.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"d410105c-c344-4dc9-b295-22a92e057bd2\" name=\"Changes\" comment=\"\" />\r\n      <created>1660594348159</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1660594348159</updated>\r\n      <workItem from=\"1660594352109\" duration=\"4882000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Add test User\">\r\n      <created>1660606225129</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1660606225129</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Create menu and 1/2 create user\">\r\n      <created>1660606818065</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1660606818065</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"fix bugs in DBHelper\">\r\n      <created>1660611418278</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1660611418278</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"fix bugs in DBHelper recommit\">\r\n      <created>1660611531302</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1660611531302</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"gg\">\r\n      <created>1660611679186</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1660611679186</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Add test User\" />\r\n    <MESSAGE value=\"Create menu and 1/2 create user\" />\r\n    <MESSAGE value=\"fix bugs in DBHelper\" />\r\n    <MESSAGE value=\"fix bugs in DBHelper recommit\" />\r\n    <MESSAGE value=\"gg\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"gg\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision c884cd677ffe1e7e1212c11902253bd82e598004)
++++ b/.idea/workspace.xml	(date 1660612285325)
+@@ -4,7 +4,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d410105c-c344-4dc9-b295-22a92e057bd2" name="Changes" comment="gg">
++    <list default="true" id="d410105c-c344-4dc9-b295-22a92e057bd2" name="Changes" comment="Update menu and DBHelper">
+       <change beforePath="$PROJECT_DIR$/src/main/java/com/jaga/DB/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jaga/DB/DBHelper.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/com/jaga/User/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jaga/User/Menu.java" afterDir="false" />
+     </list>
+@@ -134,7 +134,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1660611679186</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="Update menu and DBHelper">
++      <created>1660612006535</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1660612006535</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -157,7 +164,8 @@
+     <MESSAGE value="fix bugs in DBHelper" />
+     <MESSAGE value="fix bugs in DBHelper recommit" />
+     <MESSAGE value="gg" />
+-    <option name="LAST_COMMIT_MESSAGE" value="gg" />
++    <MESSAGE value="Update menu and DBHelper" />
++    <option name="LAST_COMMIT_MESSAGE" value="Update menu and DBHelper" />
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />

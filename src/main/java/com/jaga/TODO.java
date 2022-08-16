@@ -15,5 +15,5 @@ public class TODO {
     //3. Create getUser method in DBHelper class
     //4. Create getAllUsers method in DBHelper class
 
-    //hello world!
 }
+

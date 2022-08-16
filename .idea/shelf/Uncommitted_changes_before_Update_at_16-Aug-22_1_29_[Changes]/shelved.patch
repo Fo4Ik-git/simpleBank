@@ -1,0 +1,44 @@
+Index: src/main/java/com/jaga/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.jaga;\r\n\r\nimport com.jaga.DB.DBHelper;\r\nimport com.jaga.User.Menu;\r\n\r\nimport java.sql.SQLException;\r\n\r\npublic class Main {\r\n    public static void main(String[] args) {\r\n        try{\r\n            DBHelper dbHelper = new DBHelper();\r\n            dbHelper.openDB();\r\n            dbHelper.createDB();\r\n            dbHelper.closeDB();\r\n        } catch (SQLException e) {\r\n            System.out.println(\"Table already exists\");\r\n        }\r\n\r\n        Menu menu = new Menu();\r\n        menu.helloMessage();\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+diff --git a/src/main/java/com/jaga/Main.java b/src/main/java/com/jaga/Main.java
+--- a/src/main/java/com/jaga/Main.java	(revision 87b833d555f4332d6278e733548a150bfa230492)
++++ b/src/main/java/com/jaga/Main.java	(date 1660606160780)
+@@ -7,7 +7,7 @@
+ 
+ public class Main {
+     public static void main(String[] args) {
+-        try{
++        try {
+             DBHelper dbHelper = new DBHelper();
+             dbHelper.openDB();
+             dbHelper.createDB();
+@@ -15,10 +15,21 @@
+         } catch (SQLException e) {
+             System.out.println("Table already exists");
+         }
++        try {
++            DBHelper dbHelper = new DBHelper();
++            dbHelper.openDB();
++            dbHelper.createUser("Vlad", "12345");
++            dbHelper.closeDB();
++        } catch (SQLException e) {
++            System.out.println("User already exists");
++        }
++        Menu.helloMessage();
++    }
++}
+ 
+-        Menu menu = new Menu();
+-        menu.helloMessage();
++        /*Menu menu = new Menu();
++        menu.helloMessage();*/
+     }
+ 
+ 
+-}
++            }
