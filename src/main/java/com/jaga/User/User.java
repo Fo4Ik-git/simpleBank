@@ -18,7 +18,23 @@ public class User {
     }
 
     String createUserBankNumber() {
+        DBHelper dbHelper = new DBHelper();
 
+        /*try {
+            dbHelper.openDB();
+            String number = generatorOfNumbers();
+            if (dbHelper.newMethod(number)) {
+                return number;
+            } else {
+                createUserBankNumber();
+            }
+            dbHelper.closeDB();
+        } catch (SQLException e) {
+        }*/
+        return "";
+    }
+
+    private String generatorOfNumbers() {
         String chars = "0123456789";
         Random rnd = new Random();
         int len = 21;
@@ -28,8 +44,6 @@ public class User {
             sb.append(chars.charAt(rnd.nextInt(chars.length())));
         }
         System.out.println(sb.toString());
-
-        DBHelper dbHelper = new DBHelper();
 
         return sb.toString();
     }

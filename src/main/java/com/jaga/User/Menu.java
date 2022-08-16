@@ -1,14 +1,20 @@
 package com.jaga.User;
 
+import com.jaga.DB.DBHelper;
+
 import java.util.Scanner;
 
 public class Menu {
+    Scanner s = new Scanner(System.in);
+    DBHelper dbHelper = new DBHelper();
+    User user = new User();
+
     public void helloMessage() {
         System.out.println("Hello, welcome to the bank BVB");
         menu();
     }
 
-    public void menu(){
+    public void menu() {
         System.out.println("1. Create a new bank account for a user");
         System.out.println("2. Deposit money to a bank account");
         System.out.println("3. Withdraw money from a bank account");
@@ -23,30 +29,47 @@ public class Menu {
 
     }
 
-    private void getUserChoice(){
-        Scanner s  = new Scanner(System.in);
-        User user = new User();
+
+    private void getUserChoice() {
+        Scanner s = new Scanner(System.in);
+
         System.out.println("Enter your choice: ");
 
         try {
-            switch (s.nextInt()){
-                case 1:
-                    System.out.println("Enter your Name: ");
-
-                    String name = s.nextLine();
-                    if(check(s.nextLine())){
-                        user.createUser(name, user.createUserBankNumber());
-                    }
-
-                    break;
+            switch (s.nextInt()) {
+                case 1 -> enterName();
+                case 2 -> depositMoney();
+                case 3 -> withdrawMoney();
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private boolean check(String value){
-        Scanner s = new Scanner(System.in);
+
+
+    void enterName() {
+        System.out.println("Enter your Name: ");
+        String name = s.nextLine();
+        if (check(s.nextLine())) {
+            user.createUser(name, user.createUserBankNumber());
+        }
+    }
+
+    void depositMoney() throws Exception {
+        System.out.println("Enter a value of deposit: ");
+        dbHelper.openDB();
+
+        dbHelper.closeDB();
+        s.nextInt();
+    }
+
+    void withdrawMoney() throws Exception {
+
+    }
+
+    //Check is Username
+    private boolean check(String value) {
         System.out.println("Are you sure what " + value + " is your name? (y/n)");
         return s.nextLine().equals("y");
     }
