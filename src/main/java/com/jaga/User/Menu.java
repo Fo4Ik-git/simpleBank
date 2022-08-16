@@ -40,6 +40,7 @@ public class Menu {
                 case 1 -> enterName();
                 case 2 -> depositMoney();
                 case 3 -> withdrawMoney();
+                case 5 -> printBalance();
                 case 6 -> updateUser();
             }
         } catch (Exception e) {
@@ -47,7 +48,12 @@ public class Menu {
         }
     }
 
+    void printBalance() {
+    //    System.out.println("You have " + dbHelper.getBalance() + " in your account");
+    }
+
     void updateUser() {
+
     }
 
 

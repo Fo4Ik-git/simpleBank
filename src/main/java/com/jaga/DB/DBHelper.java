@@ -22,7 +22,7 @@ public class DBHelper {
                 ")";
         final String CREATE_BANK_ACCOUNT = "CREATE TABLE bank_account (\n" +
                 "    id       INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
-                "    user_id    INTEGER NOT NULL" +
+                "    userId    INTEGER NOT NULL" +
                 ")";
 //
         statement = connection.createStatement();
@@ -74,21 +74,15 @@ public class DBHelper {
         statement = connection.createStatement();
         statement.execute(UPDATE);
     }
-//    UPDATE users
-//    SET id = 'new-id',
-//        user_name ='new_username',
-//        bank_account = 'new_bank_account'
+
 
     public boolean checkIfExists(String bankNumber) throws SQLException {
         String CHECK = "SELECT * FROM user WHERE" + "'" + bankNumber + "'" +  "LIKE" + "'bankNumber';";
         statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(CHECK);
-        while (rs.next()) {
-            System.out.println("checkIfExeist:" + rs.first());
-        }
-        return false;
+        if (rs.next()) {
+            return false;
+        } else return true;
     }
 
 }
-//    FROM users
-//    IF(STRCMP(bankNumber, bankNumber) = 0, "TRUE", "FALSE")
