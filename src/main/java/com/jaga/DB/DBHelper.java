@@ -138,7 +138,7 @@ public class DBHelper {
             return false;
         } else return true;
     }
-
+//1234567890
     public void getAllUserData(String bankNumber) throws SQLException {
         try {
             String GET_ALL_DATA =
