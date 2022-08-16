@@ -2,10 +2,7 @@ package com.jaga.DB;
 
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DBHelper {
     // JDBC driver name and database URL
@@ -18,12 +15,12 @@ public class DBHelper {
     public void createDB() throws SQLException {
         File file = new File(JDBC_NAME);
 
-        String CREATE_USER = "CREATE TABLE user (\n" +
+        final String CREATE_USER = "CREATE TABLE user (\n" +
                 "    id       INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                 "    user_name    VARCHAR (50) NOT NULL,\n" +
                 "    bank_account VARCHAR (50) NOT NULL" +
                 ")";
-       String CREATE_BANK_ACCOUNT = "CREATE TABLE bank_account (\n" +
+        final String CREATE_BANK_ACCOUNT = "CREATE TABLE bank_account (\n" +
                 "    id       INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                 "    user_id    INTEGER NOT NULL" +
                 ")";
@@ -31,6 +28,8 @@ public class DBHelper {
         statement = connection.createStatement();
         statement.execute(CREATE_USER);
     }
+
+
 
     //Connect to Data Base
     public void openDB() {
@@ -55,8 +54,8 @@ public class DBHelper {
     }
 
     //Create User
-    public void createUser(String user_name, String bank_account) throws SQLException {
-        String CREATE = "INSERT INTO users (user_name, bank_account) VALUES ('" + user_name + "', '" + bank_account + "')";
+    public void createUser(String userName, String bankAccount) throws SQLException {
+        String CREATE = "INSERT INTO users (userName, bankAccount) VALUES ('" + userName + "', '" + bankAccount + "')";
         statement = connection.createStatement();
         statement.execute(CREATE);
     }
@@ -68,4 +67,26 @@ public class DBHelper {
         statement.execute(DELETE);
     }
 
+    public void userUpdate(String newId, String newUsername, String newBankAccount) throws SQLException {
+        String UPDATE = "UPDATE users SET id = '" + newId + "'" + ", user_name ='" + newUsername + "'" + ", bank_account = '" + newBankAccount + "'";
+        statement = connection.createStatement();
+        statement.execute(UPDATE);
+    }
+//    UPDATE users
+//    SET id = 'new-id',
+//        user_name ='new_username',
+//        bank_account = 'new_bank_account'
+
+    public boolean checkIfExists (String bankNumber) throws SQLException {
+        String CHECK = "FROM users IF(STRCMP(bankNumber, bankNumber) = 0, " + "true" + "," + "false);";
+        statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(CHECK);
+        while (rs.next()){
+            System.out.println(rs.first());
+        }
+        return false;
+    }
+
 }
+//    FROM users
+//    IF(STRCMP(bankNumber, bankNumber) = 0, "TRUE", "FALSE")
