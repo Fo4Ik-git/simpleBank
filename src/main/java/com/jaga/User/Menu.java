@@ -109,10 +109,10 @@ public class Menu {
 
     void depositMoney() throws Exception {
         System.out.println("Enter a value of deposit: ");
+        float depositAmount = s.nextInt();
         dbHelper.openDB();
-
+        dbHelper.deposit();
         dbHelper.closeDB();
-        s.nextInt();
         menu();
     }
 

@@ -31,7 +31,7 @@ public class DBHelper {
                 "    currency       VARCHAR (50)      NOT NULL,\n" +
                 "    funds       FLOAT      NOT NULL" +
                 ")";
-//
+
         statement = connection.createStatement();
         statement.execute(CREATE_USER);
         statement.execute(CREATE_BANK_ACCOUNT);
@@ -129,7 +129,7 @@ public class DBHelper {
         statement.execute(CREATE);
     }
 
-    public boolean checkLogigIsSame(String userLogin, String userPassword) throws SQLException {
+    public boolean checkLoginIsSame(String userLogin, String userPassword) throws SQLException {
         String CHECK_LOGIN = "SELECT * FROM user WHERE\" + \"'\" + userLogin + \"'\" + \"LIKE\" + \"'userLogin';";
         statement = connection.createStatement();
         statement.execute(CHECK_LOGIN);
@@ -139,4 +139,25 @@ public class DBHelper {
         } else return true;
     }
 
+    /*public void checkLoginIsEqualToPassword(String userPassword) throws SQLException {
+        String LOGIN_PASSWORD = "SELECT * FROM user WHERE\" + \"'" + userPassword + ";
+        statement = connection.createStatement();
+        statement.execute(LOGIN_PASSWORD);
+    }*/
+
+
+
+    public void deposit () throws SQLException {
+        String DEPOSIT = "UPDATE bankAccount SET funds = (funds "+ "+" + depositAmount + ");";
+        statement.execute(DEPOSIT);
+        ResultSet log = statement.executeQuery(DEPOSIT);
+    }
+
+    public void withdraw () throws SQLException {
+        String WITHDRAW = "UPDATE bankAccount SET funds = (funds " + "-" + withdrawAmount + " );";
+        statement.execute(WITHDRAW);
+        ResultSet log = statement.executeQuery(WITHDRAW);
+    }
+    // UPDATE bankAccount SET funds = (funds + depositAmount);
+    // UPDATE bankAccount SET funds = (funds - withdrawAmount);
 }
