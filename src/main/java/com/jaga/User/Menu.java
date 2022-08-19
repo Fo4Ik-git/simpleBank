@@ -63,7 +63,7 @@ public class Menu {
                 case 1 -> createUser();
                 case 2 -> depositMoney();
                 case 3 -> withdrawMoney();
-                case 4 -> createCurrencyAccount();
+                case 4 -> printCurrencyAccount();
                 case 5 -> printBalance();
                 case 6 -> updateUser();
             }
@@ -72,8 +72,15 @@ public class Menu {
         }
     }
 
-    void createCurrencyAccount() {
-
+    void printCurrencyAccount() {
+        try {
+            dbHelper.openDB();
+            printBalance();
+            dbHelper.closeDB();
+        } catch (Exception e) {
+            System.out.println("Something went wrong, please try again");
+            menu();
+        }
     }
 
     void printBalance() {
@@ -95,6 +102,20 @@ public class Menu {
         menu();
     }
 
+    /*void getUser() {
+
+        try {
+            dbHelper.openDB();
+            dbHelper.deposit();
+            dbHelper.closeDB();
+
+            menu();
+        } catch (SQLException e) {
+            menu();
+        }
+    }*/
+
+
 
     void createUser() {
         System.out.println("Enter your Name: ");
@@ -111,13 +132,17 @@ public class Menu {
         System.out.println("Enter a value of deposit: ");
         float depositAmount = s.nextInt();
         dbHelper.openDB();
-        dbHelper.deposit();
+        dbHelper.deposit(depositAmount);
         dbHelper.closeDB();
         menu();
     }
 
     void withdrawMoney() throws Exception {
-
+        System.out.println("Enter a value of withdraw: ");
+        float withdrawAmount = s.nextInt();
+        dbHelper.openDB();
+        dbHelper.withdraw(withdrawAmount);
+        dbHelper.closeDB();
         menu();
     }
 

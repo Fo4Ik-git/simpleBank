@@ -147,17 +147,34 @@ public class DBHelper {
 
 
 
-    public void deposit () throws SQLException {
+    public void deposit (float depositAmount) throws SQLException {
         String DEPOSIT = "UPDATE bankAccount SET funds = (funds "+ "+" + depositAmount + ");";
         statement.execute(DEPOSIT);
         ResultSet log = statement.executeQuery(DEPOSIT);
     }
 
-    public void withdraw () throws SQLException {
+    public void withdraw (float withdrawAmount) throws SQLException {
         String WITHDRAW = "UPDATE bankAccount SET funds = (funds " + "-" + withdrawAmount + " );";
         statement.execute(WITHDRAW);
         ResultSet log = statement.executeQuery(WITHDRAW);
     }
     // UPDATE bankAccount SET funds = (funds + depositAmount);
     // UPDATE bankAccount SET funds = (funds - withdrawAmount);
+
+
+    /*public void printBalance(float currency, String funds)  throws SQLExeption {
+        String INFO_BALANCE = "SELECT currency, funds FROM bankAccount WHERE funds is NOT NULL";
+        statement.execute(INFO_BALANCE);
+        ResultSet log = statement.executeQuery(INFO_BALANCE);
+        System.out.println("Your balance is: " + INFO_BALANCE);
+    }*/
+
+    /*public void getUserValues (String userName, u.bankNumber, currecy, float funds) throws SQLExeption {
+        String GET_USER_VALUES = "SELECT userName, u.bankNumber, currecy, funds " +
+                                "FROM user u" +
+                                "JOIM bankAccount ba" +
+                                " on u.bankNumbe = ba.bankNumber"
+        statement.execute(GET_USER_VALUES);
+        ResultSet log = statement.executeQuery(GET_USER_VALUES);
+    }*/
 }
