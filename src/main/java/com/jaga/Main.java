@@ -14,7 +14,6 @@ public class Main {
             dbHelper.createDB();
             dbHelper.closeDB();
         } catch (SQLException e) {
-            System.out.println("Table already exists");
             /*System.out.println(e.getMessage());*/
         }
 

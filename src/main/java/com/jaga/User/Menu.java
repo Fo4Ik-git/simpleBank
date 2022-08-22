@@ -14,11 +14,11 @@ public class Menu {
     public void helloMessage() {
         System.out.println("Hello, welcome to the bank BVB " +
                 "Do you have an account? (y/n)");
-        if (s.nextLine().equals("y")){
-           checkUserData();
+        if (s.nextLine().equals("y")) {
+            checkUserData();
         } else {
             System.out.println("Do you want to create an account? (y/n)");
-            if (s.nextLine().equals("y")){
+            if (s.nextLine().equals("y")) {
                 createUser();
             } else {
                 System.out.println("Goodbye");
@@ -26,12 +26,28 @@ public class Menu {
         }
     }
 
+    void createUser() {
+        String[] userData = new String[2];
+        String[] userText = {"Please enter your name", "Please enter your password"};
+
+        for (int i = 0; i < userData.length; i++) {
+            System.out.println(userText[i]);
+            userData[i] = s.nextLine();
+        }
+        if (check(userData)) {
+                    user.createUser(userData[0], user.createUserLogin(), userData[1], user.createUserBankNumber());
+            menu();
+        } else {
+            createUser();
+        }
+    }
+
     private void checkUserData() {
-        System.out.println("Please enter your username");
-        String userName = s.nextLine();
+        System.out.println("Please enter your login");
+        String userLogin = s.nextLine();
         System.out.println("Please enter your password");
         String userPassword = s.nextLine();
-        if (userName.equals(config.getUserName()) && userPassword.equals(config.getUserPassword())) {
+        if (userLogin.equals(config.getUserName()) && userPassword.equals(config.getUserPassword())) {
             menu();
         } else {
             System.out.println("Wrong username or password");
@@ -60,10 +76,9 @@ public class Menu {
 
         try {
             switch (s.nextInt()) {
-                case 1 -> createUser();
+                case 1 -> createCurrencyAccount();
                 case 2 -> depositMoney();
                 case 3 -> withdrawMoney();
-                case 4 -> createCurrencyAccount();
                 case 5 -> printBalance();
                 case 6 -> updateUser();
             }
@@ -77,7 +92,7 @@ public class Menu {
     }
 
     void printBalance() {
-    //    System.out.println("You have " + dbHelper.getBalance() + " in your account");
+        //    System.out.println("You have " + dbHelper.getBalance() + " in your account");
 
         try {
             dbHelper.openDB();
@@ -96,17 +111,6 @@ public class Menu {
     }
 
 
-    void createUser() {
-        System.out.println("Enter your Name: ");
-        String name = s.nextLine();
-        if (check(name)) {
-            user.createUser(name, "test",  user.createUserBankNumber());
-            menu();
-        } else {
-            createUser();
-        }
-    }
-
     void depositMoney() throws Exception {
         System.out.println("Enter a value of deposit: ");
         dbHelper.openDB();
@@ -121,13 +125,19 @@ public class Menu {
         menu();
     }
 
-    //Check is Username
-    private boolean check(String value) {
-        System.out.println("Are you sure what " + value + " is your name? (y/n)");
+    //Check is Username and Password are correct
+    private boolean check(String[] userData) {
+        String[] userText = {"Your name: ", "Your login: ", "Your password: "};
+        for (int i = 0; i < userData.length; i++) {
+            System.out.println(userText[i] + userData[i]);
+        }
+        System.out.println("It`s correct? (y/n)");
         if (s.nextLine().equals("y")) {
             return true;
-        } else {
+        }
+        if (s.nextLine().equals("n")) {
             return false;
         }
+        return false;
     }
 }

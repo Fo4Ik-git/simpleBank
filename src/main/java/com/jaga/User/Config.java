@@ -3,9 +3,16 @@ package com.jaga.User;
 public class Config {
 
 
-    private String userName, userPassword, userBankNumber, currency, userID, bankAccountID;
+    private String userName, userLogin, userPassword, userBankNumber, currency, userID, bankAccountID;
     private float funds;
 
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
+    }
 
     public String getUserBankNumber() {
         return userBankNumber;
