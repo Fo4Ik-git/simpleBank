@@ -15,7 +15,8 @@ public class User {
             dbHelper.createUser(userName, userLogin, userPassword, bankAccount);
             dbHelper.closeDB();
         } catch (SQLException e) {
-            System.out.println("User already exists");
+            System.out.println("User 11");
+            System.out.println(e.getMessage());
         }
     }
 
@@ -32,7 +33,8 @@ public class User {
             }
             dbHelper.closeDB();
         } catch (SQLException e) {
-
+            System.out.println("User 22");
+            System.out.println(e.getMessage());
         }
         return "";
     }
@@ -57,7 +59,7 @@ public class User {
 
         try {
             dbHelper.openDB();
-            config.setUserBankNumber(generatorOfUserLogin());
+            config.setUserLogin(generatorOfUserLogin());
             if (dbHelper.checkIfExists(config.getUserLogin(), "userLogin")) {
                 return config.getUserLogin();
             } else {

@@ -62,9 +62,9 @@ public class DBHelper {
 
     //Create User
     public void createUser(String userName, String userLogin, String userPassword, String bankNumber) throws SQLException {
-        String CREATE = "INSERT INTO user (userName,userPassword, bankNumber) " +
+        String CREATE = "INSERT INTO user (userName,userLogin, userPassword, bankNumber) " +
                 "VALUES (" +
-                "'" + userName + "', '" + userLogin + "', '" + userPassword + "', '" + bankNumber +
+                "'" + userName + "', '" + userLogin + "', '" + userPassword + "', '" + bankNumber + "'" +
                 ")";
         statement = connection.createStatement();
         statement.execute(CREATE);
@@ -130,7 +130,7 @@ public class DBHelper {
         statement.execute(CREATE);
     }
 
-    public boolean checkLogigIsSame(String userLogin, String userPassword) throws SQLException {
+   /* public boolean checkLogigIsSame(String userLogin, String userPassword) throws SQLException {
         String CHECK_LOGIN = "SELECT * FROM user WHERE\" + \"'\" + userLogin + \"'\" + \"LIKE\" + \"'userLogin';";
         statement = connection.createStatement();
         statement.execute(CHECK_LOGIN);
@@ -138,6 +138,6 @@ public class DBHelper {
         if (log.next()) {
             return false;
         } else return true;
-    }
+    }*/
 
 }

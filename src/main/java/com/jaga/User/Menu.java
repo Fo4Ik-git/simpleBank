@@ -101,7 +101,8 @@ public class Menu {
             dbHelper.closeDB();
             menu();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Menu 94");
+            System.out.println(e.getMessage());
         }
     }
 
@@ -136,7 +137,7 @@ public class Menu {
             return true;
         }
         if (s.nextLine().equals("n")) {
-            return false;
+            createUser();
         }
         return false;
     }
