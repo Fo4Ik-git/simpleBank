@@ -7,11 +7,10 @@ import java.io.File;
 import java.sql.*;
 
 public class DBHelper {
-    // JDBC driver name and database URL
-    Config config = new Config();
-
     static final String JDBC_NAME = "db.db";
     public Statement statement;
+    // JDBC driver name and database URL
+    Config config = new Config();
     Connection connection;
 
 
@@ -22,6 +21,7 @@ public class DBHelper {
         String CREATE_USER = "CREATE TABLE user (\n" +
                 "    id       INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                 "    userName    VARCHAR (50) NOT NULL,\n" +
+                "    userLogin    VARCHAR (50) NOT NULL,\n" +
                 "    userPassword    VARCHAR (50) NOT NULL,\n" +
                 "    bankNumber VARCHAR (50) NOT NULL UNIQUE" +
                 ")";
@@ -31,7 +31,7 @@ public class DBHelper {
                 "    currency       VARCHAR (50)      NOT NULL,\n" +
                 "    funds       FLOAT      NOT NULL" +
                 ")";
-
+//
         statement = connection.createStatement();
         statement.execute(CREATE_USER);
         statement.execute(CREATE_BANK_ACCOUNT);
@@ -61,10 +61,10 @@ public class DBHelper {
     }
 
     //Create User
-    public void createUser(String userName, String userPassword, String bankNumber) throws SQLException {
+    public void createUser(String userName, String userLogin, String userPassword, String bankNumber) throws SQLException {
         String CREATE = "INSERT INTO user (userName,userPassword, bankNumber) " +
                 "VALUES (" +
-                "'" + userName + "', '" + userPassword + "'" + ", '" + bankNumber +
+                "'" + userName + "', '" + userLogin + "', '" + userPassword + "', '" + bankNumber +
                 ")";
         statement = connection.createStatement();
         statement.execute(CREATE);
@@ -85,8 +85,8 @@ public class DBHelper {
     }
 
 
-    public boolean checkIfExists(String bankNumber) throws SQLException {
-        String CHECK = "SELECT * FROM user WHERE" + "'" + bankNumber + "'" + "LIKE" + "'bankNumber';";
+    public boolean checkIfExists(String whatCheck, String namedInDB) throws SQLException {
+        String CHECK = "SELECT * FROM user WHERE" + "'" + whatCheck + "'" + "LIKE" + "'" + namedInDB + "';";
         statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(CHECK);
         if (rs.next()) {
@@ -95,7 +95,7 @@ public class DBHelper {
     }
 
     //1234567890
-    public void getAllUserData(String bankNumber) throws SQLException {
+    public void getAllUserData(String userLogin) throws SQLException {
         try {
             String GET_ALL_DATA =
                     "SELECT * \n" +
@@ -119,6 +119,7 @@ public class DBHelper {
             throw new RuntimeException(e);
         }
     }
+    //TODO Change getAllUserData, because userLogin not used. You can`t find user
 
     public void createBankAccount(String bankNumber, String currency, float funds) throws SQLException {
         String CREATE = "INSERT INTO bankAccount (bankNumber, currency, funds) " +
@@ -129,7 +130,7 @@ public class DBHelper {
         statement.execute(CREATE);
     }
 
-    public boolean checkLoginIsSame(String userLogin, String userPassword) throws SQLException {
+    public boolean checkLogigIsSame(String userLogin, String userPassword) throws SQLException {
         String CHECK_LOGIN = "SELECT * FROM user WHERE\" + \"'\" + userLogin + \"'\" + \"LIKE\" + \"'userLogin';";
         statement = connection.createStatement();
         statement.execute(CHECK_LOGIN);
@@ -139,42 +140,4 @@ public class DBHelper {
         } else return true;
     }
 
-    /*public void checkLoginIsEqualToPassword(String userPassword) throws SQLException {
-        String LOGIN_PASSWORD = "SELECT * FROM user WHERE\" + \"'" + userPassword + ";
-        statement = connection.createStatement();
-        statement.execute(LOGIN_PASSWORD);
-    }*/
-
-
-
-    public void deposit (float depositAmount) throws SQLException {
-        String DEPOSIT = "UPDATE bankAccount SET funds = (funds "+ "+" + depositAmount + ");";
-        statement.execute(DEPOSIT);
-        ResultSet log = statement.executeQuery(DEPOSIT);
-    }
-
-    public void withdraw (float withdrawAmount) throws SQLException {
-        String WITHDRAW = "UPDATE bankAccount SET funds = (funds " + "-" + withdrawAmount + " );";
-        statement.execute(WITHDRAW);
-        ResultSet log = statement.executeQuery(WITHDRAW);
-    }
-    // UPDATE bankAccount SET funds = (funds + depositAmount);
-    // UPDATE bankAccount SET funds = (funds - withdrawAmount);
-
-
-    /*public void printBalance(float currency, String funds)  throws SQLExeption {
-        String INFO_BALANCE = "SELECT currency, funds FROM bankAccount WHERE funds is NOT NULL";
-        statement.execute(INFO_BALANCE);
-        ResultSet log = statement.executeQuery(INFO_BALANCE);
-        System.out.println("Your balance is: " + INFO_BALANCE);
-    }*/
-
-    /*public void getUserValues (String userName, u.bankNumber, currecy, float funds) throws SQLExeption {
-        String GET_USER_VALUES = "SELECT userName, u.bankNumber, currecy, funds " +
-                                "FROM user u" +
-                                "JOIM bankAccount ba" +
-                                " on u.bankNumbe = ba.bankNumber"
-        statement.execute(GET_USER_VALUES);
-        ResultSet log = statement.executeQuery(GET_USER_VALUES);
-    }*/
 }
