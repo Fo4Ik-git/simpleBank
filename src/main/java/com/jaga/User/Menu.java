@@ -42,6 +42,21 @@ public class Menu {
         }
     }
 
+    private boolean check(String[] userData) {
+        String[] userText = {"Your name: ", "Your login: ", "Your password: "};
+        for (int i = 0; i < userData.length; i++) {
+            System.out.println(userText[i] + userData[i]);
+        }
+        System.out.println("It`s correct? (y/n)");
+        if (s.nextLine().equals("y")) {
+            return true;
+        }
+        if (s.nextLine().equals("n")) {
+            createUser();
+        }
+        return false;
+    }
+
     private void checkUserData() {
         System.out.println("Please enter your login");
         String userLogin = s.nextLine();
@@ -127,18 +142,5 @@ public class Menu {
     }
 
     //Check is Username and Password are correct
-    private boolean check(String[] userData) {
-        String[] userText = {"Your name: ", "Your login: ", "Your password: "};
-        for (int i = 0; i < userData.length; i++) {
-            System.out.println(userText[i] + userData[i]);
-        }
-        System.out.println("It`s correct? (y/n)");
-        if (s.nextLine().equals("y")) {
-            return true;
-        }
-        if (s.nextLine().equals("n")) {
-            createUser();
-        }
-        return false;
-    }
+
 }

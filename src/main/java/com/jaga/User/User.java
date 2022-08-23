@@ -25,8 +25,9 @@ public class User {
 
         try {
             dbHelper.openDB();
-            config.setUserBankNumber(generatorOfBankNumbers());
+            config.setUserBankNumber(generatorOfNumbers(21));
             if (dbHelper.checkIfExists(config.getUserBankNumber(), "bankNumber")) {
+                System.out.println("Your bank account: " + config.getUserBankNumber());
                 return config.getUserBankNumber();
             } else {
                 createUserBankNumber();
@@ -39,18 +40,14 @@ public class User {
         return "";
     }
 
-    private String generatorOfBankNumbers() {
+    private String generatorOfNumbers(int length) {
         String chars = "0123456789";
         Random rnd = new Random();
-        int len = 21;
-        StringBuilder sb = new StringBuilder(len);
+        StringBuilder sb = new StringBuilder(length);
 
-        for (int i = 0; i < len; i++) {
+        for (int i = 0; i < length; i++) {
             sb.append(chars.charAt(rnd.nextInt(chars.length())));
         }
-        System.out.println("Your bank account: " + sb.toString());
-        //testets
-
         return sb.toString();
     }
 
@@ -59,30 +56,20 @@ public class User {
 
         try {
             dbHelper.openDB();
-            config.setUserLogin(generatorOfUserLogin());
+            config.setUserLogin(generatorOfNumbers(10));
             if (dbHelper.checkIfExists(config.getUserLogin(), "userLogin")) {
+                System.out.println("Your user login: " + config.getUserLogin());
                 return config.getUserLogin();
             } else {
                 createUserLogin();
             }
             dbHelper.closeDB();
         } catch (SQLException e) {
-
+            System.out.println("User 57");
+            System.out.println(e.getMessage());
         }
         return "";
     }
-    private String generatorOfUserLogin() {
-        String chars = "0123456789";
-        Random rnd = new Random();
-        int len = 10;
-        StringBuilder sb = new StringBuilder(len);
 
-        for (int i = 0; i < len; i++) {
-            sb.append(chars.charAt(rnd.nextInt(chars.length())));
-        }
-        System.out.println("Your login: " + sb.toString());
-
-        return sb.toString();
-    }
 
 }
